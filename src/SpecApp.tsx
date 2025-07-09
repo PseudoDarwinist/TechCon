@@ -1060,12 +1060,12 @@ const DomainAppsPortal = ({ domain, onClose }) => {
 
       {/* Content */}
       {!selectedApp ? (
-        <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8 overflow-auto">
+        <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8 overflow-auto max-w-6xl mx-auto">
           {apps.map((app) => (
             <div
               key={app.name}
               onClick={() => window.open(app.url, '_blank', 'noopener,noreferrer')}
-              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-[#00ffff] transition-colors duration-200 relative overflow-hidden ${app.isBackground ? 'min-h-[150px] justify-end' : 'bg-[#0a0f2b]'}`}
+              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-[#00ffff] transition-colors duration-200 relative overflow-hidden max-w-xs ${app.isBackground ? 'min-h-[150px] max-h-[200px] justify-end' : 'bg-[#0a0f2b]'}`}
               style={app.isBackground ? {
                 backgroundImage: `url("${app.logo}")`,
                 backgroundSize: 'cover',
