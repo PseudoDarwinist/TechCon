@@ -198,6 +198,12 @@ const CRTWrapper = ({ children }) => {
         .animate-pulse-glow {
           animation: pulse-glow 1.5s infinite alternate;
         }
+        .glow-text {
+          text-shadow: 0 0 10px rgba(251, 191, 36, 0.5), 0 0 20px rgba(251, 191, 36, 0.3), 0 0 30px rgba(251, 191, 36, 0.2);
+        }
+        .text-shadow-glow {
+          text-shadow: 0 0 8px rgba(251, 191, 36, 0.8), 0 0 16px rgba(251, 191, 36, 0.4);
+        }
         `}
       </style>
       <div className="absolute inset-0 flex items-center justify-center p-4">
@@ -1046,13 +1052,13 @@ const DomainAppsPortal = ({ domain, onClose }) => {
   const apps = domainAppsData[domain] || [];
 
   return (
-    <div className="absolute inset-0 z-50 flex flex-col bg-black bg-opacity-90">
+    <div className="absolute inset-0 z-50 flex flex-col bg-gradient-to-br from-black via-gray-900 to-yellow-900 bg-opacity-95">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[#00ffff] crt-glow">
-        <h2 className="text-2xl text-[#00ffff]">{domain} Apps</h2>
+      <div className="flex items-center justify-between p-4 border-b border-yellow-400 shadow-lg shadow-yellow-400/20">
+        <h2 className="text-2xl text-yellow-400 drop-shadow-lg glow-text">{domain} Apps</h2>
         <button
           onClick={onClose}
-          className="px-3 py-1 text-xl bg-[#00ffff] text-[#1a234a] rounded-md hover:bg-white transition-colors duration-200"
+          className="px-3 py-1 text-xl bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-md hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30"
         >
           Close
         </button>
@@ -1065,7 +1071,7 @@ const DomainAppsPortal = ({ domain, onClose }) => {
             <div
               key={app.name}
               onClick={() => window.open(app.url, '_blank', 'noopener,noreferrer')}
-              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-[#00ffff] transition-colors duration-200 relative overflow-hidden max-w-xs ${app.isBackground ? 'min-h-[150px] max-h-[200px] justify-end' : 'bg-[#0a0f2b]'}`}
+              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 relative overflow-hidden max-w-xs ${app.isBackground ? 'min-h-[150px] max-h-[200px] justify-end' : 'bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg shadow-yellow-900/20'}`}
               style={app.isBackground ? {
                 backgroundImage: `url("${app.logo}")`,
                 backgroundSize: 'cover',
@@ -1074,12 +1080,12 @@ const DomainAppsPortal = ({ domain, onClose }) => {
               } : {}}
             >
               {app.isBackground && (
-                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-yellow-900/20 to-transparent rounded-lg"></div>
               )}
               {!app.isBackground && (
-                <img src={app.logo} alt={app.name} className="w-16 h-16 object-contain mb-2" />
+                <img src={app.logo} alt={app.name} className="w-16 h-16 object-contain mb-2 drop-shadow-lg" />
               )}
-              <span className={`text-center text-lg ${app.isBackground ? 'relative z-10 text-white font-bold drop-shadow-lg' : 'text-[#e0e8ff]'}`}>
+              <span className={`text-center text-lg ${app.isBackground ? 'relative z-10 text-yellow-100 font-bold drop-shadow-lg text-shadow-glow' : 'text-yellow-100'}`}>
                 {app.name}
               </span>
             </div>
@@ -1088,17 +1094,17 @@ const DomainAppsPortal = ({ domain, onClose }) => {
       ) : (
         <div className="flex-1 flex flex-col">
           {/* Back Bar */}
-          <div className="flex items-center p-2 border-b border-[#00ffff] crt-glow">
+          <div className="flex items-center p-2 border-b border-yellow-400 shadow-lg shadow-yellow-400/20">
             <button
               onClick={() => setSelectedApp(null)}
-              className="mr-4 px-2 py-1 bg-[#00ffff] text-[#1a234a] rounded hover:bg-white transition-colors duration-200"
+              className="mr-4 px-2 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30"
             >Back</button>
-            <h3 className="text-xl text-[#e0e8ff]">{selectedApp.name}</h3>
+            <h3 className="text-xl text-yellow-100">{selectedApp.name}</h3>
             <a
               href={selectedApp.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto text-[#00ffff] underline hover:text-white"
+              className="ml-auto text-yellow-400 underline hover:text-yellow-300 transition-colors duration-200"
             >Open in new tab</a>
           </div>
           {/* Iframe */}
