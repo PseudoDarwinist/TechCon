@@ -1499,7 +1499,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
         <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
           {[
             { id: 'PRODUCT OWNER', Icon: OperationsIcon, desc: 'Product Owner', hasBackground: true, backgroundImage: 'PO.png' },
-            { id: 'DESIGNER', Icon: CrewIcon, desc: 'Designer', hasBackground: true, backgroundImage: 'designer.png' },
+            { id: 'DESIGNER', Icon: CrewIcon, desc: 'Designer', hasBackground: true, backgroundImage: 'Designer.png' },
             { id: 'DEVELOPER', Icon: FlightIcon, desc: 'Developer', hasBackground: true, backgroundImage: 'developer.png' },
           ].map(c => (
             <div key={c.id} onClick={() => onDomainClick(c.id)} onDrop={e => { e.preventDefault(); handleToolDrop(c.id); }} onDragOver={e => e.preventDefault()}
