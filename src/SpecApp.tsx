@@ -1030,19 +1030,14 @@ const MusicDanceExperience = ({ onComplete }) => {
 // NEW: Domain Apps Portal Overlay
 const domainAppsData = {
   'PRODUCT OWNER': [
-          { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
-      { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
-      { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
-      { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
-    { name: 'GitHub', url: 'https://github.com/', logo: 'https://github.githubassets.com/favicons/favicon.svg', isBackground: false },
+    { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
+    { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
+    { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
+    { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
   ],
   'DESIGNER': [
-    { name: 'Figma', url: 'https://figma.com/', logo: 'https://www.figma.com/favicon.ico', isBackground: false },
-    { name: 'Adobe XD', url: 'https://adobexdplatform.com/', logo: 'https://www.adobe.com/favicon.ico', isBackground: false },
   ],
   'DEVELOPER': [
-    { name: 'VS Code', url: 'https://code.visualstudio.com/', logo: 'https://code.visualstudio.com/favicon.ico', isBackground: false },
-    { name: 'GitHub', url: 'https://github.com/', logo: 'https://github.githubassets.com/favicons/favicon.svg', isBackground: false },
   ],
 };
 
