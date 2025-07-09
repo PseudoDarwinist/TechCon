@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Disruption Management - System Architecture</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .legend h3 {
+            margin-top: 0;
+            color: #555;
+        }
+        .legend-item {
+            display: inline-block;
+            margin: 5px 15px;
+            font-size: 14px;
+        }
+        .legend-item span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Travel Disruption Management System</h1>
+        <p class="subtitle">Full Agentic AI Architecture with Google ADK</p>
+        
+        <div class="mermaid">
+graph TB
+    %% User Interfaces
+    subgraph "User Interfaces"
+        MW[Mobile/Web App]
+        API[REST API]
+        WH[Webhooks]
+        WL[White-Label UI]
+    end
+
+    %% Core Orchestration Layer
+    subgraph "Core Orchestration Layer - Google ADK"
+        ORCH[Master Orchestrator Agent]
+        
+        subgraph "Primary Agents"
+            DMA[Disruption Monitor Agent]
+            RBA[Rebooking Agent]
+            PMA[Preference Manager Agent]
+            CMA[Communication Agent]
+            ESC[Escalation Agent]
+        end
+        
+        subgraph "Support Agents"
+            COST[Cost Optimizer Agent]
+            LOYAL[Loyalty Maximizer Agent]
+            CARBON[Carbon Footprint Agent]
+            PREDICT[Prediction Agent]
+            LEARN[Learning Agent]
+        end
+    end
+
+    %% External Data Sources
+    subgraph "External Data Sources"
+        subgraph "Flight Data"
+            FA[FlightAware API]
+            FR24[FlightRadar24]
+            OAG[OAG Flight Stats]
+        end
+        
+        subgraph "Booking Systems"
+            AMADEUS[Amadeus GDS]
+            SABRE[Sabre GDS]
+            TRAVELPORT[Travelport]
+            NDC[Airline NDC APIs]
+        end
+        
+        subgraph "Alternative Transport"
+            RAIL[Rail APIs<br/>Amtrak, SNCF, DB]
+            BUS[Bus APIs<br/>Greyhound, FlixBus]
+            RENTAL[Car Rental APIs<br/>Hertz, Avis]
+            RIDE[Ride Share APIs<br/>Uber, Lyft]
+        end
+        
+        subgraph "Accommodation"
+            HOTEL[Hotel APIs<br/>Booking.com, Expedia]
+            AIRBNB[Airbnb API]
+        end
+    end
+
+    %% Data Storage Layer
+    subgraph "Data Storage & Memory"
+        subgraph "Operational Data"
+            PG[(PostgreSQL<br/>Transactions)]
+            REDIS[(Redis<br/>Session Cache)]
+            TS[(TimescaleDB<br/>Time Series)]
+        end
+        
+        subgraph "AI Memory Systems"
+            VECTOR[(Pinecone<br/>Vector DB)]
+            GRAPH[(Neo4j<br/>Relationship Graph)]
+            DOC[(MongoDB<br/>Preferences)]
+        end
+    end
+
+    %% Analytics & ML
+    subgraph "Analytics & Machine Learning"
+        subgraph "ML Models"
+            DISRUPT_MODEL[Disruption Prediction<br/>Model]
+            PRICE_MODEL[Price Optimization<br/>Model]
+            PREF_MODEL[Preference Learning<br/>Model]
+        end
+        
+        subgraph "Analytics"
+            BQ[BigQuery<br/>Data Warehouse]
+            LOOKER[Looker<br/>BI Dashboard]
+        end
+    end
+
+    %% Communication Layer
+    subgraph "Communication Channels"
+        SMS[SMS Gateway<br/>Twilio]
+        EMAIL[Email Service<br/>SendGrid]
+        PUSH[Push Notifications<br/>Firebase]
+        WHATSAPP[WhatsApp Business]
+        TEAMS[MS Teams/Slack]
+    end
+
+    %% Security & Compliance
+    subgraph "Security & Compliance"
+        AUTH[Auth0/Okta<br/>SSO]
+        VAULT[HashiCorp Vault<br/>Secrets]
+        AUDIT[Audit Logs]
+        PCI[PCI Compliance]
+        GDPR[GDPR Engine]
+    end
+
+    %% Connections - User Flow
+    MW --> API
+    API --> ORCH
+    WH --> ORCH
+    WL --> API
+
+    %% Agent Orchestration
+    ORCH --> DMA
+    ORCH --> RBA
+    ORCH --> PMA
+    ORCH --> CMA
+    ORCH --> ESC
+    ORCH --> COST
+    ORCH --> LOYAL
+    ORCH --> CARBON
+    ORCH --> PREDICT
+    ORCH --> LEARN
+
+    %% Disruption Detection
+    FA --> DMA
+    FR24 --> DMA
+    OAG --> DMA
+    DMA --> TS
+
+    %% Rebooking Flow
+    RBA --> AMADEUS
+    RBA --> SABRE
+    RBA --> TRAVELPORT
+    RBA --> NDC
+    RBA --> RAIL
+    RBA --> BUS
+    RBA --> RENTAL
+    RBA --> RIDE
+    RBA --> HOTEL
+    RBA --> AIRBNB
+
+    %% Preference Management
+    PMA --> DOC
+    PMA --> VECTOR
+    PMA --> GRAPH
+    LEARN --> PREF_MODEL
+
+    %% Communication Flow
+    CMA --> SMS
+    CMA --> EMAIL
+    CMA --> PUSH
+    CMA --> WHATSAPP
+    CMA --> TEAMS
+
+    %% Data Flow
+    DMA --> PG
+    RBA --> PG
+    ORCH --> REDIS
+    PREDICT --> DISRUPT_MODEL
+    COST --> PRICE_MODEL
+
+    %% Analytics Flow
+    PG --> BQ
+    TS --> BQ
+    BQ --> LOOKER
+    BQ --> DISRUPT_MODEL
+    BQ --> PRICE_MODEL
+
+    %% Security Flow
+    API --> AUTH
+    ORCH --> VAULT
+    ORCH --> AUDIT
+    PG --> GDPR
+    PG --> PCI
+
+    %% Styling
+    classDef userInterface fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef agent fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef external fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef storage fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    classDef ml fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef comm fill:#e0f2f1,stroke:#00796b,stroke-width:2px
+    classDef security fill:#efebe9,stroke:#5d4037,stroke-width:2px
+
+    class MW,API,WH,WL userInterface
+    class ORCH,DMA,RBA,PMA,CMA,ESC,COST,LOYAL,CARBON,PREDICT,LEARN agent
+    class FA,FR24,OAG,AMADEUS,SABRE,TRAVELPORT,NDC,RAIL,BUS,RENTAL,RIDE,HOTEL,AIRBNB external
+    class PG,REDIS,TS,VECTOR,GRAPH,DOC storage
+    class DISRUPT_MODEL,PRICE_MODEL,PREF_MODEL,BQ,LOOKER ml
+    class SMS,EMAIL,PUSH,WHATSAPP,TEAMS comm
+    class AUTH,VAULT,AUDIT,PCI,GDPR security
+        </div>
+
+        <div class="legend">
+            <h3>Architecture Components</h3>
+            <div class="legend-item">
+                <span style="background: #e3f2fd; border: 2px solid #1976d2"></span>
+                User Interfaces
+            </div>
+            <div class="legend-item">
+                <span style="background: #f3e5f5; border: 2px solid #7b1fa2"></span>
+                AI Agents (Google ADK)
+            </div>
+            <div class="legend-item">
+                <span style="background: #fff3e0; border: 2px solid #f57c00"></span>
+                External APIs
+            </div>
+            <div class="legend-item">
+                <span style="background: #e8f5e9; border: 2px solid #388e3c"></span>
+                Data Storage
+            </div>
+            <div class="legend-item">
+                <span style="background: #fce4ec; border: 2px solid #c2185b"></span>
+                ML/Analytics
+            </div>
+            <div class="legend-item">
+                <span style="background: #e0f2f1; border: 2px solid #00796b"></span>
+                Communication
+            </div>
+            <div class="legend-item">
+                <span style="background: #efebe9; border: 2px solid #5d4037"></span>
+                Security
+            </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <h3>Key Architectural Decisions</h3>
+            <ul>
+                <li><strong>Multi-Airline Support:</strong> Generic platform with airline-specific adapters</li>
+                <li><strong>Agent Orchestration:</strong> Google ADK for managing autonomous agents</li>
+                <li><strong>Scalability:</strong> Microservices architecture with independent scaling</li>
+                <li><strong>Real-time Processing:</strong> Event-driven architecture with &lt;1s response time</li>
+                <li><strong>Multi-modal Transport:</strong> Not just flights - trains, buses, cars, hotels</li>
+                <li><strong>White-Label Ready:</strong> Airlines can brand as their own service</li>
+                <li><strong>Compliance:</strong> GDPR, PCI-DSS, and airline-specific regulations</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

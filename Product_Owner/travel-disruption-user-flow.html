@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Disruption Management - User Flow Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .persona-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        
+        .persona-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .persona-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .scenario {
+            background: #e74c3c;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .scenario h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .flow-section {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .flow-section.old {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .flow-section.new {
+            border-top: 5px solid #27ae60;
+        }
+        
+        .flow-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ddd;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 3px solid white;
+        }
+        
+        .time {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .pain-point {
+            background: #fee;
+            border-left-color: #e74c3c;
+            color: #c0392b;
+        }
+        
+        .pain-point::before {
+            background: #e74c3c;
+        }
+        
+        .success-point {
+            background: #e8f8f5;
+            border-left-color: #27ae60;
+            color: #27ae60;
+        }
+        
+        .success-point::before {
+            background: #27ae60;
+        }
+        
+        .app-mockup {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .notification {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 400px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .options {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .option.selected {
+            border-color: #27ae60;
+            background: #e8f8f5;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Travel Disruption Management Platform</h1>
+            <p class="subtitle">Real-World Example: Sarah's Business Trip Crisis</p>
+        </div>
+
+        <div class="persona-card">
+            <h2>👩‍💼 Meet Sarah Mitchell</h2>
+            <div class="persona-details">
+                <div class="persona-item">
+                    <strong>Role:</strong> VP of Sales, Tech Company
+                </div>
+                <div class="persona-item">
+                    <strong>Travel Frequency:</strong> 80+ flights/year
+                </div>
+                <div class="persona-item">
+                    <strong>Status:</strong> United 1K, Delta Diamond
+                </div>
+                <div class="persona-item">
+                    <strong>Trip Value:</strong> $2.5M deal closing
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario">
+            <h3>🚨 The Crisis</h3>
+            <p style="font-size: 1.2em;">Monday, 3:45 PM at Chicago O'Hare (ORD)</p>
+            <p>United Flight 1542 to San Francisco (6:00 PM departure) - CANCELLED</p>
+            <p>Major storm system grounds 400+ flights</p>
+        </div>
+
+        <div class="comparison">
+            <div class="flow-section old">
+                <h3><span class="emoji">😰</span> Current Experience</h3>
+                <div class="timeline">
+                    <div class="timeline-item pain-point">
+                        <div class="time">3:45 PM</div>
+                        <strong>Flight Cancelled</strong>
+                        <p>Sarah sees cancellation on airport monitor</p>
+                    </div>
+                    
+                    <div class="timeline-item pain-point">
+                        <div class="time">3:50 PM</div>
+                        <strong>The Race Begins</strong>
+                        <p>Runs to United counter - 200+ people already in line</p>
+                        <p>Opens United app - crashes from overload</p>
+                        <p>Calls Premier line - "2 hour estimated wait"</p>
+                    </div>
+                    
+                    <div class="timeline-item pain-point">
+                        <div class="time">4:30 PM</div>
+                        <strong>Still Waiting</strong>
+                        <p>Position 156 in line</p>
+                        <p>Watches last SFO flight (7:30 PM) sell out on app</p>
+                        <p>Stress level: Maximum</p>
+                    </div>
+                    
+                    <div class="timeline-item pain-point">
+                        <div class="time">5:45 PM</div>
+                        <strong>Finally Reaches Agent</strong>
+                        <p>"Best I can do is 6 AM tomorrow with connection through Denver"</p>
+                        <p>Arrives SFO at 11:30 AM - meeting is at 9 AM</p>
+                    </div>
+                    
+                    <div class="timeline-item pain-point">
+                        <div class="time">6:00 PM</div>
+                        <strong>Expensive Scramble</strong>
+                        <p>Books airport hotel: $289</p>
+                        <p>Reschedules meeting to 2 PM</p>
+                        <p>Client is annoyed</p>
+                    </div>
+                    
+                    <div class="timeline-item pain-point">
+                        <div class="time">Final Damage</div>
+                        <strong>Total Impact</strong>
+                        <p>⏱️ 3 hours wasted at airport</p>
+                        <p>💰 $289 unexpected hotel cost</p>
+                        <p>😤 Stressed, exhausted, frustrated</p>
+                        <p>📉 Client relationship damaged</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-section new">
+                <h3><span class="emoji">✨</span> With Our Platform</h3>
+                <div class="timeline">
+                    <div class="timeline-item success-point">
+                        <div class="time">3:45 PM</div>
+                        <strong>Instant Detection</strong>
+                        <p>AI detects cancellation before airline announcement</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">3:46 PM</div>
+                        <strong>Smart Analysis Begins</strong>
+                        <div class="app-mockup">
+                            <div class="notification">
+                                📱 <strong>Travel Guard Alert</strong><br>
+                                Your flight UA1542 will be cancelled. We're already working on alternatives...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">3:47 PM</div>
+                        <strong>AI Agents Activate</strong>
+                        <p>✅ Preference Agent: "Sarah prefers direct flights, window seats"</p>
+                        <p>✅ Rebooking Agent: Searches United, American, Delta, Southwest</p>
+                        <p>✅ Cost Optimizer: "Sarah is 1K - prioritize same-day arrival"</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">3:48 PM</div>
+                        <strong>Options Delivered</strong>
+                        <div class="app-mockup">
+                            <div class="notification">
+                                <strong>3 Options Available (Tap to Select):</strong>
+                            </div>
+                            <div class="options">
+                                <div class="option">
+                                    <strong>Option 1: American 2346</strong><br>
+                                    ORD → SFO (Direct)<br>
+                                    Departs: 7:15 PM | Arrives: 9:45 PM<br>
+                                    First Class Available<br>
+                                    ✅ <em>Recommended - Earliest arrival</em>
+                                </div>
+                                <div class="option selected">
+                                    <strong>Option 2: Delta 891 + Private Car</strong><br>
+                                    ORD → OAK (Direct)<br>
+                                    Departs: 6:30 PM | Arrives: 8:55 PM<br>
+                                    + Uber Black to SFO Hotel (45 min)<br>
+                                    💡 <em>Creative solution - beats all SFO flights</em>
+                                </div>
+                                <div class="option">
+                                    <strong>Option 3: United 523</strong><br>
+                                    ORD → DEN → SFO<br>
+                                    Departs: 5:45 PM | Arrives: 11:20 PM<br>
+                                    Maintains 1K status miles<br>
+                                    ⚡ <em>Leaves soonest</em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item success-point">
+                        <div class="time">3:49 PM</div>
+                        <strong>One-Tap Confirmation</strong>
+                        <p>Sarah selects Option 2 (Delta + Car)</p>
+                        <p>✅ Flight automatically booked</p>
+                        <p>✅ Uber scheduled for Oakland arrival</p>
+                        <p>✅ Hotel notified of late arrival</p>
+                    </div>
+                    
+                    <div class="timeline-item success-point">
+                        <div class="time">3:50 PM</div>
+                        <strong>Complete Resolution</strong>
+                        <div class="app-mockup">
+                            <div class="notification" style="background: #27ae60;">
+                                ✅ <strong>All Set!</strong><br>
+                                New itinerary in your email<br>
+                                Gate D7 | Boarding 6:00 PM<br>
+                                Uber will be waiting at OAK
+                            </div>
+                        </div>
+                        <p>Sarah heads to Delta lounge - crisis solved in 5 minutes</p>
+                    </div>
+                    
+                    <div class="timeline-item success-point">
+                        <div class="time">Final Result</div>
+                        <strong>Total Impact</strong>
+                        <p>⏱️ 5 minutes to resolution</p>
+                        <p>💰 $0 extra costs (platform covered car)</p>
+                        <p>😌 Calm, in control, impressed</p>
+                        <p>✅ Makes 9 AM meeting fresh & prepared</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-value">5 min</div>
+                <div class="metric-label">vs 3 hours</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">$0</div>
+                <div class="metric-label">vs $289 hotel</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">On-time</div>
+                <div class="metric-label">vs missed meeting</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3 options</div>
+                <div class="metric-label">vs 1 bad option</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>The Business Impact</h3>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">
+                Sarah closes her $2.5M deal on time. Her company saves $1,200 in productivity. 
+                She becomes a platform evangelist, driving 50+ enterprise sign-ups.
+            </p>
+            <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; margin-top: 30px;">
+                <p><strong>For Airlines:</strong> Reduce call center volume by 70% during disruptions</p>
+                <p><strong>For Enterprises:</strong> Save $500k+ annually on travel disruption costs</p>
+                <p><strong>For Travelers:</strong> Turn crisis into minor inconvenience</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
