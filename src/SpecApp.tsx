@@ -469,8 +469,8 @@ const MessageBox = ({ message, type, onClose }) => {
 const LumonMessage = ({ message, onDismiss }) => {
   if (!message) return null;
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] p-8 bg-[#0a0f2b] border-2 border-[#00ffff] rounded-lg text-center crt-glow">
-      <p className="text-3xl text-[#00ffff] mb-4">Transmission from Coforge</p>
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] p-8 bg-[#0a0f2b] border-2 border-yellow-400 rounded-lg text-center shadow-lg shadow-yellow-400/30">
+      <p className="text-3xl text-yellow-400 mb-4 glow-text">Transmission from Coforge</p>
       <p className="text-2xl text-[#e0e8ff] mb-6">{message}</p>
       <button
         onClick={onDismiss}
@@ -648,7 +648,7 @@ const MDRGame = ({ onGameComplete, onGameFail, currentFile, setCurrentFile }) =>
             const rectWidth = Math.abs(startPos.current.x - endPos.current.x);
             const rectHeight = Math.abs(startPos.current.y - endPos.current.y);
 
-            ctx.strokeStyle = '#00ffff';
+            ctx.strokeStyle = '#facc15';
             ctx.lineWidth = 2;
             ctx.setLineDash([5, 5]);
             ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
@@ -848,7 +848,7 @@ const MDRGame = ({ onGameComplete, onGameFail, currentFile, setCurrentFile }) =>
 const PerksDisplay = ({ perks }) => {
   return (
     <div className="p-4 bg-[#0a0f2b] border-2 border-[#e0e8ff] rounded-lg crt-glow mt-4">
-      <h3 className="text-xl text-[#00ffff] mb-3 text-center">Incentives Program</h3>
+      <h3 className="text-xl text-yellow-400 mb-3 text-center glow-text">Incentives Program</h3>
       <div className="grid grid-cols-2 gap-2 text-sm">
         {perks.map(perk => (
           <div key={perk.id} className="flex items-center gap-2">
@@ -878,7 +878,7 @@ const EmployeeDirectory = ({ currentEmployee }) => {
 
   return (
     <div className="p-4 bg-[#0a0f2b] border-2 border-[#e0e8ff] rounded-lg crt-glow mt-4 overflow-auto max-h-48">
-      <h3 className="text-xl text-[#00ffff] mb-3 text-center">Employee Directory</h3>
+      <h3 className="text-xl text-yellow-400 mb-3 text-center glow-text">Employee Directory</h3>
       <ul className="text-sm">
         {employees.map(emp => (
           <li key={emp.id} className="flex items-center gap-2 py-1 border-b border-[#1f2d5a] last:border-b-0">
@@ -1341,17 +1341,17 @@ function App() {
               <div className="w-full flex justify-center p-4 z-20 flex-shrink-0">
                 <button
                   onClick={() => setMode('innie')}
-                  className={`px-6 py-2 rounded-l-md border-2 border-r-0 border-[#e0e8ff] text-xl font-bold
-                             ${mode === 'innie' ? 'bg-[#00ffff] text-[#1a234a]' : 'bg-[#1a234a] text-[#e0e8ff]'}
-                             hover:bg-[#00ffff] hover:text-[#1a234a] transition-colors duration-200 crt-glow`}
+                  className={`px-6 py-2 rounded-l-md border-2 border-r-0 border-yellow-400 text-xl font-bold
+                             ${mode === 'innie' ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black shadow-lg shadow-yellow-400/30' : 'bg-[#1a234a] text-yellow-100'}
+                             hover:bg-gradient-to-r hover:from-yellow-300 hover:to-yellow-400 hover:text-black transition-all duration-200 glow-text`}
                 >
                   Innie Mode
                 </button>
                 <button
                   onClick={() => setMode('outie')}
-                  className={`px-6 py-2 rounded-r-md border-2 border-[#e0e8ff] text-xl font-bold
-                             ${mode === 'outie' ? 'bg-[#00ffff] text-[#1a234a]' : 'bg-[#1a234a] text-[#e0e8ff]'}
-                             hover:bg-[#00ffff] hover:text-[#1a234a] transition-colors duration-200 crt-glow`}
+                  className={`px-6 py-2 rounded-r-md border-2 border-yellow-400 text-xl font-bold
+                             ${mode === 'outie' ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black shadow-lg shadow-yellow-400/30' : 'bg-[#1a234a] text-yellow-100'}
+                             hover:bg-gradient-to-r hover:from-yellow-300 hover:to-yellow-400 hover:text-black transition-all duration-200 glow-text`}
                 >
                   Outie Mode
                 </button>
@@ -1361,7 +1361,7 @@ function App() {
               {mode === 'innie' && (
                 <div className="w-full px-8 pb-4 z-20 flex-shrink-0">
                   <div className="max-w-4xl mx-auto text-center">
-                    <p className="text-lg text-[#1a234a] leading-relaxed bg-[#00ffff] p-4 rounded-lg crt-glow">
+                    <p className="text-lg text-black leading-relaxed bg-gradient-to-r from-yellow-400 to-yellow-500 p-4 rounded-lg shadow-lg shadow-yellow-400/30 glow-text">
                       Software Factory allows teams from solo PM-Developers up to large groups to organize themselves, write quality requirements, build thorough Engineering plans, extract detailed tickets, write quality code, QA thoroughly and repeat this process in an increasingly automated way until the project works. It is tuned for complex environments, making it also work very elegantly for de novo projects.
                     </p>
                   </div>
@@ -1493,7 +1493,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
               <span className="text-center text-sm mt-1">{t.name}</span>
             </div>
           ))}
-          <button onClick={triggerMDRGame} className="mt-4 px-4 py-2 rounded-md bg-[#00ffff] text-[#1a234a] font-bold text-xl hover:bg-white transition-colors duration-200 crt-glow">Start MDR</button>
+          <button onClick={triggerMDRGame} className="mt-4 px-4 py-2 rounded-md bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold text-xl hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30">Start MDR</button>
         </div>
 
         {/* Domains */}
@@ -1525,7 +1525,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
         <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-[#0a0f2b] border-2 border-[#e0e8ff] rounded-lg crt-glow p-4 max-w-md w-full mx-4">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl text-[#00ffff]">Employee Directory</h3>
+              <h3 className="text-xl text-yellow-400 glow-text">Employee Directory</h3>
               <button
                 onClick={() => setShowEmployeeDirectory(false)}
                 className="text-[#e0e8ff] hover:text-white text-2xl"
@@ -1563,7 +1563,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
         <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-[#0a0f2b] border-2 border-[#e0e8ff] rounded-lg crt-glow p-4 max-w-md w-full mx-4">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl text-[#00ffff]">Incentives Program</h3>
+              <h3 className="text-xl text-yellow-400 glow-text">Incentives Program</h3>
               <button
                 onClick={() => setShowIncentivesProgram(false)}
                 className="text-[#e0e8ff] hover:text-white text-2xl"
