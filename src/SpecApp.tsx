@@ -1030,10 +1030,10 @@ const MusicDanceExperience = ({ onComplete }) => {
 // NEW: Domain Apps Portal Overlay
 const domainAppsData = {
   'PRODUCT OWNER': [
-    { name: 'Factory', url: 'https://www.factory.ai/', logo: './Assets/Factory.png', isBackground: true },
-    { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: './Assets/Prompt_Builder.png', isBackground: true },
-    { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: './Assets/user_flow.png', isBackground: true },
-    { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: './Assets/disruption.png', isBackground: true },
+          { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
+      { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
+      { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
+      { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
     { name: 'GitHub', url: 'https://github.com/', logo: 'https://github.githubassets.com/favicons/favicon.svg', isBackground: false },
   ],
   'DESIGNER': [
@@ -1505,7 +1505,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
             <div key={c.id} onClick={() => onDomainClick(c.id)} onDrop={e => { e.preventDefault(); handleToolDrop(c.id); }} onDragOver={e => e.preventDefault()}
               className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-[#0a0f2b] transition-colors duration-200 min-h-[120px] cursor-pointer relative overflow-hidden ${c.hasBackground ? '' : ''}`}
               style={c.hasBackground ? { 
-                backgroundImage: `url("./Assets/${c.backgroundImage}")`,
+                backgroundImage: `url("/Assets/${c.backgroundImage}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
