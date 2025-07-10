@@ -1055,6 +1055,26 @@ const DomainAppsPortal = ({ domain, onClose }) => {
   const [selectedApp, setSelectedApp] = useState(null);
   const apps = domainAppsData[domain] || [];
 
+  // Dynamic grid based on number of apps
+  const getGridClass = (appCount) => {
+    if (appCount <= 2) {
+      return "grid-cols-1 md:grid-cols-2 gap-8"; // Larger cards for 2 or fewer
+    } else if (appCount <= 4) {
+      return "grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"; // Medium cards for 3-4
+    } else {
+      return "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"; // Smaller cards for 5+
+    }
+  };
+
+  // Dynamic card size based on number of apps
+  const getCardClass = (appCount) => {
+    if (appCount <= 2) {
+      return "max-w-sm min-h-[200px] max-h-[250px]"; // Larger cards
+    } else {
+      return "max-w-xs min-h-[150px] max-h-[200px]"; // Standard cards
+    }
+  };
+
   return (
     <div className="absolute inset-0 z-50 flex flex-col bg-gradient-to-br from-black via-gray-900 to-yellow-900 bg-opacity-95">
       {/* Header */}
@@ -1070,12 +1090,12 @@ const DomainAppsPortal = ({ domain, onClose }) => {
 
       {/* Content */}
       {!selectedApp ? (
-        <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8 overflow-auto max-w-6xl mx-auto">
+        <div className={`flex-1 grid ${getGridClass(apps.length)} p-8 overflow-auto max-w-6xl mx-auto justify-center items-start`}>
           {apps.map((app) => (
             <div
               key={app.name}
               onClick={() => window.open(app.url, '_blank', 'noopener,noreferrer')}
-              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 relative overflow-hidden max-w-xs ${app.isBackground ? 'min-h-[150px] max-h-[200px] justify-end' : 'bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg shadow-yellow-900/20'}`}
+              className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 relative overflow-hidden ${getCardClass(apps.length)} ${app.isBackground ? 'justify-end' : 'bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg shadow-yellow-900/20'}`}
               style={app.isBackground ? {
                 backgroundImage: `url("${app.logo}")`,
                 backgroundSize: 'cover',
