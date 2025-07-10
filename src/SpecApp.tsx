@@ -1598,9 +1598,9 @@ const OutieOverview = ({ workflowStages, perks }) => (
       <LumonLogo />
     </div>
     <div className="flex-1 flex items-center justify-center p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
         <div 
-          className="flex flex-col items-center justify-center p-6 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/10 hover:to-yellow-500/10 hover:border-yellow-400 transition-all duration-300 min-h-[250px] cursor-pointer relative overflow-hidden"
+          className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/30 hover:to-yellow-500/30 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
           style={{
             backgroundImage: 'url("/Assets/outie.png")',
             backgroundSize: '80%',
@@ -1608,14 +1608,14 @@ const OutieOverview = ({ workflowStages, perks }) => (
             backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
-          <span className="relative z-10 text-white font-bold drop-shadow-lg text-2xl">
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-opacity-20 transition-all duration-300"></div>
+          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
             OUTIE RESULT
           </span>
         </div>
         
         <div 
-          className="flex flex-col items-center justify-center p-6 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/10 hover:to-yellow-500/10 hover:border-yellow-400 transition-all duration-300 min-h-[250px] cursor-pointer relative overflow-hidden"
+          className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/30 hover:to-yellow-500/30 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
           style={{
             backgroundImage: 'url("/Assets/framework.png")',
             backgroundSize: '80%',
@@ -1623,8 +1623,8 @@ const OutieOverview = ({ workflowStages, perks }) => (
             backgroundRepeat: 'no-repeat'
           }}
         >
-          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
-          <span className="relative z-10 text-white font-bold drop-shadow-lg text-2xl">
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-opacity-20 transition-all duration-300"></div>
+          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
             FRAMEWORK
           </span>
         </div>
