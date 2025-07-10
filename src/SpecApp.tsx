@@ -1598,9 +1598,9 @@ const OutieOverview = ({ workflowStages, perks }) => (
       <LumonLogo />
     </div>
     <div className="flex-1 flex items-center justify-center p-4">
-      <div className="grid grid-cols-1 gap-4 max-w-md w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
         <div 
-          className="flex flex-col items-center justify-center p-4 rounded-lg border-2 border-yellow-400 shadow-lg shadow-yellow-400/20 hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300 min-h-[300px] cursor-pointer relative overflow-hidden"
+          className="flex flex-col items-center justify-center p-6 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/10 hover:to-yellow-500/10 hover:border-yellow-400 transition-all duration-300 min-h-[250px] cursor-pointer relative overflow-hidden"
           style={{
             backgroundImage: 'url("/Assets/outie.png")',
             backgroundSize: '80%',
@@ -1609,8 +1609,23 @@ const OutieOverview = ({ workflowStages, perks }) => (
           }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
-          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
+          <span className="relative z-10 text-white font-bold drop-shadow-lg text-2xl">
             OUTIE RESULT
+          </span>
+        </div>
+        
+        <div 
+          className="flex flex-col items-center justify-center p-6 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-gradient-to-br hover:from-yellow-400/10 hover:to-yellow-500/10 hover:border-yellow-400 transition-all duration-300 min-h-[250px] cursor-pointer relative overflow-hidden"
+          style={{
+            backgroundImage: 'url("/Assets/framework.png")',
+            backgroundSize: '80%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
+          <span className="relative z-10 text-white font-bold drop-shadow-lg text-2xl">
+            FRAMEWORK
           </span>
         </div>
       </div>
