@@ -1641,39 +1641,43 @@ const OutieOverview = ({ workflowStages, perks }) => {
 
       {/* Outie Apps Portal */}
       {showOutieApps && (
-        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-[#0a0f2b] border-2 border-yellow-400 rounded-lg shadow-lg shadow-yellow-400/30 p-6 max-w-4xl w-full mx-4 max-h-[80vh] overflow-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl text-yellow-400 glow-text">Travel Disruption Solutions</h3>
-              <button
-                onClick={() => setShowOutieApps(false)}
-                className="text-yellow-400 hover:text-white text-3xl font-bold hover:scale-110 transition-all duration-200"
+        <div className="absolute inset-0 z-50 flex flex-col bg-gradient-to-br from-black via-gray-900 to-yellow-900 bg-opacity-95">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-yellow-400 shadow-lg shadow-yellow-400/20">
+            <h2 className="text-2xl text-yellow-400 drop-shadow-lg glow-text">OUTIE RESULT Apps</h2>
+            <button
+              onClick={() => setShowOutieApps(false)}
+              className="px-3 py-1 text-xl bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-md hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30"
+            >
+              Close
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8 overflow-auto max-w-6xl mx-auto">
+            {outieResultAppsData.map((app) => (
+              <div
+                key={app.name}
+                onClick={() => window.open(app.url, '_blank', 'noopener,noreferrer')}
+                className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 relative overflow-hidden max-w-xs ${app.isBackground ? 'min-h-[150px] max-h-[200px] justify-end' : 'bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg shadow-yellow-900/20'}`}
+                style={app.isBackground ? {
+                  backgroundImage: `url("${app.logo}")`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                } : {}}
               >
-                ×
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {outieResultAppsData.map((app, index) => (
-                <div
-                  key={index}
-                  onClick={() => window.open(app.url, '_blank')}
-                  className="flex flex-col items-center p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-yellow-400 cursor-pointer hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 min-h-[200px] relative overflow-hidden"
-                  style={app.isBackground ? {
-                    backgroundImage: `url("${app.logo}")`,
-                    backgroundSize: '60%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  } : {}}
-                >
-                  {app.isBackground && (
-                    <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
-                  )}
-                  <span className={`text-lg font-bold text-center ${app.isBackground ? 'relative z-10 text-white drop-shadow-lg' : 'text-yellow-100'}`}>
-                    {app.name}
-                  </span>
-                </div>
-              ))}
-            </div>
+                {app.isBackground && (
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-yellow-900/20 to-transparent rounded-lg"></div>
+                )}
+                {!app.isBackground && (
+                  <img src={app.logo} alt={app.name} className="w-16 h-16 object-contain mb-2 drop-shadow-lg" />
+                )}
+                <span className={`text-center text-lg ${app.isBackground ? 'relative z-10 text-yellow-100 font-bold drop-shadow-lg text-shadow-glow' : 'text-yellow-100'}`}>
+                  {app.name}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       )}
