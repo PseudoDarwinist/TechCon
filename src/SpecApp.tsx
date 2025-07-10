@@ -1043,7 +1043,7 @@ const domainAppsData = {
   ],
   'DESIGNER': [
   ],
-  'DEVELOPER': [
+  'ENGINEER': [
   ],
 };
 
@@ -1432,11 +1432,11 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
   const [draggedTool, setDraggedTool] = useState(null);
 
   const aiTools = [
-    { id: 'vibe_coding', name: 'Vibe-coding', icon: <DataToolIcon />, goodDrop: 'PRODUCT OWNER', badDrop: 'DEVELOPER' },
+    { id: 'vibe_coding', name: 'Vibe-coding', icon: <DataToolIcon />, goodDrop: 'PRODUCT OWNER', badDrop: 'ENGINEER' },
     { id: 'designing', name: 'Designing', icon: <ModelToolIcon />, goodDrop: 'DESIGNER', badDrop: 'PRODUCT OWNER' },
-    { id: 'security', name: 'Security', icon: <CodeToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
-    { id: 'database', name: 'Database', icon: <CiCdToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'PRODUCT OWNER' },
-    { id: 'ai_system', name: 'AI-System', icon: <BugToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
+    { id: 'security', name: 'Security', icon: <CodeToolIcon />, goodDrop: 'ENGINEER', badDrop: 'DESIGNER' },
+    { id: 'database', name: 'Database', icon: <CiCdToolIcon />, goodDrop: 'ENGINEER', badDrop: 'PRODUCT OWNER' },
+    { id: 'ai_system', name: 'AI-System', icon: <BugToolIcon />, goodDrop: 'ENGINEER', badDrop: 'DESIGNER' },
   ];
 
   const handleToolDrop = useCallback((domainType) => {
@@ -1500,13 +1500,13 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
           {[
             { id: 'PRODUCT OWNER', Icon: OperationsIcon, desc: 'Product Owner', hasBackground: true, backgroundImage: 'PO.png' },
             { id: 'DESIGNER', Icon: CrewIcon, desc: 'Designer', hasBackground: true, backgroundImage: 'Designer.png' },
-            { id: 'DEVELOPER', Icon: FlightIcon, desc: 'Developer', hasBackground: true, backgroundImage: 'developer.png' },
+            { id: 'ENGINEER', Icon: FlightIcon, desc: 'Engineer', hasBackground: true, backgroundImage: 'developer.png' },
           ].map(c => (
             <div key={c.id} onClick={() => onDomainClick(c.id)} onDrop={e => { e.preventDefault(); handleToolDrop(c.id); }} onDragOver={e => e.preventDefault()}
               className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-[#0a0f2b] transition-colors duration-200 min-h-[120px] cursor-pointer relative overflow-hidden ${c.hasBackground ? '' : ''}`}
               style={c.hasBackground ? { 
                 backgroundImage: `url("/Assets/${c.backgroundImage}")`,
-                backgroundSize: 'cover',
+                backgroundSize: c.id === 'ENGINEER' ? '80%' : 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
               } : {}}>
