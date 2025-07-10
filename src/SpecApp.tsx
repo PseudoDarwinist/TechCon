@@ -1593,17 +1593,28 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
 
 const OutieOverview = ({ workflowStages, perks }) => (
   <div className="flex flex-col h-full w-full p-4">
-    <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-[#e0e8ff] crt-glow">
-      <span className="text-xl md:text-2xl">Outie Strategic Overview</span>
+    <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-yellow-400 shadow-lg shadow-yellow-400/20">
+      <span className="text-xl md:text-2xl text-yellow-400 glow-text">Final Output</span>
       <LumonLogo />
     </div>
-    <div className="flex-1 p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-auto">
-      {workflowStages.map(s => (
-        <div key={s.id} className="bg-[#0a0f2b] p-6 rounded-lg border-2 border-[#e0e8ff] crt-glow flex flex-col items-center text-center">
-          <h3 className="text-3xl mb-4 text-[#e0e8ff]">{s.name}</h3>
-          <p className="text-xl text-[#e0e8ff]">{s.status}</p>
+    <div className="flex-1 flex items-center justify-center p-4">
+      <div 
+        className="w-96 h-80 rounded-lg border-2 border-yellow-400 shadow-lg shadow-yellow-400/30 relative overflow-hidden cursor-pointer hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300"
+        style={{
+          backgroundImage: 'url("/Assets/outie.png")',
+          backgroundSize: '80%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#0a0f2b'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-yellow-900/20 to-transparent rounded-lg"></div>
+        <div className="absolute bottom-4 left-0 right-0 text-center">
+          <span className="text-2xl text-yellow-100 font-bold drop-shadow-lg text-shadow-glow">
+            Outie Result
+          </span>
         </div>
-      ))}
+      </div>
     </div>
   </div>
 );
