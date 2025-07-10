@@ -1432,12 +1432,11 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
   const [draggedTool, setDraggedTool] = useState(null);
 
   const aiTools = [
-    { id: 'data_prep', name: 'Data Prep AI', icon: <DataToolIcon />, goodDrop: 'PRODUCT OWNER', badDrop: 'DEVELOPER' },
-    { id: 'model_train', name: 'Model Training AI', icon: <ModelToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'PRODUCT OWNER' },
-    { id: 'code_analyzer', name: 'Code Analyzer AI', icon: <CodeToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
-    { id: 'ci_cd_pipe', name: 'CI/CD Pipeline AI', icon: <CiCdToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'PRODUCT OWNER' },
-    { id: 'bug_reporter', name: 'Bug Reporter AI', icon: <BugToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
-    { id: 'feedback_loop', name: 'Feedback AI', icon: <FeedbackToolIcon />, goodDrop: 'DESIGNER', badDrop: 'DEVELOPER' },
+    { id: 'vibe_coding', name: 'Vibe-coding', icon: <DataToolIcon />, goodDrop: 'PRODUCT OWNER', badDrop: 'DEVELOPER' },
+    { id: 'designing', name: 'Designing', icon: <ModelToolIcon />, goodDrop: 'DESIGNER', badDrop: 'PRODUCT OWNER' },
+    { id: 'security', name: 'Security', icon: <CodeToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
+    { id: 'database', name: 'Database', icon: <CiCdToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'PRODUCT OWNER' },
+    { id: 'ai_system', name: 'AI-System', icon: <BugToolIcon />, goodDrop: 'DEVELOPER', badDrop: 'DESIGNER' },
   ];
 
   const handleToolDrop = useCallback((domainType) => {
@@ -1465,18 +1464,18 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
   return (
     <div className="flex flex-col h-full w-full p-4 overflow-hidden">
       <MessageBox message={message} type={messageType} onClose={() => setMessage('')} />
-      <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-[#e0e8ff] crt-glow">
-        <span className="text-xl md:text-2xl">Innie Workspace</span>
+      <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-yellow-400 shadow-lg shadow-yellow-400/20">
+        <span className="text-xl md:text-2xl text-yellow-400 glow-text">Frameworks</span>
         <div className="flex items-center gap-4">
           <button
             onClick={() => setShowEmployeeDirectory(true)}
-            className="px-3 py-1 text-sm bg-[#0a0f2b] text-[#e0e8ff] border border-[#e0e8ff] rounded hover:bg-[#1f2d5a] transition-colors duration-200"
+            className="px-3 py-1 text-sm bg-gradient-to-r from-yellow-400 to-yellow-500 text-black border border-yellow-400 rounded hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30"
           >
             Directory
           </button>
           <button
             onClick={() => setShowIncentivesProgram(true)}
-            className="px-3 py-1 text-sm bg-[#0a0f2b] text-[#e0e8ff] border border-[#e0e8ff] rounded hover:bg-[#1f2d5a] transition-colors duration-200"
+            className="px-3 py-1 text-sm bg-gradient-to-r from-yellow-400 to-yellow-500 text-black border border-yellow-400 rounded hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30"
           >
             Incentives
           </button>
@@ -1485,12 +1484,12 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
       </div>
       <div className="flex-1 flex flex-col md:flex-row w-full gap-4 overflow-hidden">
         {/* Tool Palette */}
-        <div className="w-full md:w-48 flex flex-row md:flex-col items-center gap-4 p-4 rounded-lg border-2 border-[#e0e8ff] crt-glow overflow-auto">
+        <div className="w-full md:w-48 flex flex-row md:flex-col items-center gap-4 p-4 rounded-lg border-2 border-yellow-400 shadow-lg shadow-yellow-400/20 overflow-auto">
           {aiTools.map(t => (
             <div key={t.id} draggable onDragStart={e => { e.dataTransfer.setData('toolId', t.id); setDraggedTool(t); }}
-              className="flex flex-col items-center p-3 bg-[#0a0f2b] rounded-lg border border-[#e0e8ff] cursor-grab hover:bg-[#1f2d5a] transition-colors duration-200 w-28 md:w-auto flex-shrink-0">
+              className="flex flex-col items-center p-3 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-yellow-400 cursor-grab hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 w-28 md:w-auto flex-shrink-0 shadow-lg shadow-yellow-900/20">
               {t.icon}
-              <span className="text-center text-sm mt-1">{t.name}</span>
+              <span className="text-center text-sm mt-1 text-yellow-100">{t.name}</span>
             </div>
           ))}
           <button onClick={triggerMDRGame} className="mt-4 px-4 py-2 rounded-md bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold text-xl hover:from-yellow-300 hover:to-yellow-400 transition-all duration-200 shadow-lg shadow-yellow-400/30">Start MDR</button>
