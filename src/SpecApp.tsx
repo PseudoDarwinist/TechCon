@@ -1616,6 +1616,14 @@ const OutieOverview = ({ workflowStages, perks }) => {
         <span className="text-xl md:text-2xl text-yellow-400 glow-text">Final Output</span>
         <LumonLogo />
       </div>
+      
+      {/* Framework Description */}
+      <div className="mb-6 p-4 bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 rounded-lg border border-yellow-400/30">
+        <p className="text-yellow-400 text-lg text-center leading-relaxed">
+          You can build amazing things with AI but there's a core process to follow and you simply have to ask the right questions, give the right context, stay in control, use hundreds of new chat sessions, build on all the key requirements of any production software, deploy it the right way, think about architecture, scaling, security, api efficiency, costs, rate limiting, proper auth, the right databases for your needs, caching, etc. <span className="font-bold text-yellow-300">LEARN WITH OUR FRAMEWORK!</span>
+        </p>
+      </div>
+      
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
           <div 
