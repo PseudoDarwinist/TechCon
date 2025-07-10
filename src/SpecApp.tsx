@@ -1038,14 +1038,18 @@ const domainAppsData = {
   'PRODUCT OWNER': [
     { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
     { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
-    { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
-    { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
   ],
   'DESIGNER': [
   ],
   'ENGINEER': [
   ],
 };
+
+// NEW: Outie Result Apps Data
+const outieResultAppsData = [
+  { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
+  { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
+];
 
 const DomainAppsPortal = ({ domain, onClose }) => {
   const [selectedApp, setSelectedApp] = useState(null);
@@ -1591,46 +1595,90 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
   );
 };
 
-const OutieOverview = ({ workflowStages, perks }) => (
-  <div className="flex flex-col h-full w-full p-4">
-    <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-yellow-400 shadow-lg shadow-yellow-400/20">
-      <span className="text-xl md:text-2xl text-yellow-400 glow-text">Final Output</span>
-      <LumonLogo />
-    </div>
-    <div className="flex-1 flex items-center justify-center p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
-        <div 
-          className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
-          style={{
-            backgroundImage: 'url("/Assets/outie.png")',
-            backgroundSize: '60%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-gradient-to-br hover:from-yellow-400/40 hover:to-yellow-500/40 transition-all duration-300"></div>
-          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
-            OUTIE RESULT
-          </span>
-        </div>
-        
-        <div 
-          className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
-          style={{
-            backgroundImage: 'url("/Assets/framework.png")',
-            backgroundSize: '60%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-gradient-to-br hover:from-yellow-400/40 hover:to-yellow-500/40 transition-all duration-300"></div>
-          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
-            FRAMEWORK
-          </span>
+const OutieOverview = ({ workflowStages, perks }) => {
+  const [showOutieApps, setShowOutieApps] = useState(false);
+
+  return (
+    <div className="flex flex-col h-full w-full p-4">
+      <div className="flex justify-between items-center w-full pb-2 mb-4 border-b-2 border-yellow-400 shadow-lg shadow-yellow-400/20">
+        <span className="text-xl md:text-2xl text-yellow-400 glow-text">Final Output</span>
+        <LumonLogo />
+      </div>
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
+          <div 
+            onClick={() => setShowOutieApps(true)}
+            className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
+            style={{
+              backgroundImage: 'url("/Assets/outie.png")',
+              backgroundSize: '60%',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-gradient-to-br hover:from-yellow-400/40 hover:to-yellow-500/40 transition-all duration-300"></div>
+            <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
+              OUTIE RESULT
+            </span>
+          </div>
+          
+          <div 
+            className="flex flex-col items-center justify-center p-8 rounded-lg border-2 border-[#e0e8ff] crt-glow transition-all duration-300 min-h-[350px] cursor-pointer relative overflow-hidden"
+            style={{
+              backgroundImage: 'url("/Assets/framework.png")',
+              backgroundSize: '60%',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg hover:bg-gradient-to-br hover:from-yellow-400/40 hover:to-yellow-500/40 transition-all duration-300"></div>
+            <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
+              FRAMEWORK
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* Outie Apps Portal */}
+      {showOutieApps && (
+        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-[#0a0f2b] border-2 border-yellow-400 rounded-lg shadow-lg shadow-yellow-400/30 p-6 max-w-4xl w-full mx-4 max-h-[80vh] overflow-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl text-yellow-400 glow-text">Travel Disruption Solutions</h3>
+              <button
+                onClick={() => setShowOutieApps(false)}
+                className="text-yellow-400 hover:text-white text-3xl font-bold hover:scale-110 transition-all duration-200"
+              >
+                ×
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {outieResultAppsData.map((app, index) => (
+                <div
+                  key={index}
+                  onClick={() => window.open(app.url, '_blank')}
+                  className="flex flex-col items-center p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg border border-yellow-400 cursor-pointer hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 min-h-[200px] relative overflow-hidden"
+                  style={app.isBackground ? {
+                    backgroundImage: `url("${app.logo}")`,
+                    backgroundSize: '60%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  } : {}}
+                >
+                  {app.isBackground && (
+                    <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
+                  )}
+                  <span className={`text-lg font-bold text-center ${app.isBackground ? 'relative z-10 text-white drop-shadow-lg' : 'text-yellow-100'}`}>
+                    {app.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 // ----------------------------------------------------------------
