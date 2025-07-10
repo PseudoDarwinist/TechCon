@@ -1506,7 +1506,7 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
               className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 border-[#e0e8ff] crt-glow hover:bg-[#0a0f2b] transition-colors duration-200 min-h-[120px] cursor-pointer relative overflow-hidden ${c.hasBackground ? '' : ''}`}
               style={c.hasBackground ? { 
                 backgroundImage: `url("/Assets/${c.backgroundImage}")`,
-                backgroundSize: (c.id === 'ENGINEER' || c.id === 'DESIGNER') ? '80%' : 'cover',
+                backgroundSize: '80%',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
               } : {}}>
