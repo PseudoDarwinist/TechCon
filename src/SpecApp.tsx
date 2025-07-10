@@ -1038,6 +1038,8 @@ const domainAppsData = {
   'PRODUCT OWNER': [
     { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
     { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
+    { name: 'Travel Disruption User Flow', url: './Product_Owner/travel-disruption-user-flow.html', logo: '/Assets/user_flow.png', isBackground: true },
+    { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
   ],
   'DESIGNER': [
   ],
