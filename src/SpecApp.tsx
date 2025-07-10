@@ -1059,22 +1059,12 @@ const DomainAppsPortal = ({ domain, onClose }) => {
 
   // Dynamic grid based on number of apps
   const getGridClass = (appCount) => {
-    if (appCount <= 2) {
-      return "grid-cols-1 md:grid-cols-2 gap-8"; // Larger cards for 2 or fewer
-    } else if (appCount <= 4) {
-      return "grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"; // Medium cards for 3-4
-    } else {
-      return "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"; // Smaller cards for 5+
-    }
+    return "grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6"; // Always use 4-column layout
   };
 
-  // Dynamic card size based on number of apps
+  // Dynamic card size based on number of apps  
   const getCardClass = (appCount) => {
-    if (appCount <= 2) {
-      return "max-w-sm min-h-[200px] max-h-[250px]"; // Larger cards
-    } else {
-      return "max-w-xs min-h-[150px] max-h-[200px]"; // Standard cards
-    }
+    return "max-w-sm min-h-[180px] max-h-[220px]"; // Larger cards for all
   };
 
   return (
@@ -1100,7 +1090,7 @@ const DomainAppsPortal = ({ domain, onClose }) => {
               className={`flex flex-col items-center p-4 rounded-lg cursor-pointer border-2 border-transparent hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 relative overflow-hidden ${getCardClass(apps.length)} ${app.isBackground ? 'justify-end' : 'bg-gradient-to-br from-gray-800 to-gray-900 shadow-lg shadow-yellow-900/20'}`}
               style={app.isBackground ? {
                 backgroundImage: `url("${app.logo}")`,
-                backgroundSize: 'cover',
+                backgroundSize: '80%',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'
               } : {}}
