@@ -1598,20 +1598,19 @@ const OutieOverview = ({ workflowStages, perks }) => (
       <LumonLogo />
     </div>
     <div className="flex-1 flex items-center justify-center p-4">
-      <div 
-        className="w-96 h-80 rounded-lg border-2 border-yellow-400 shadow-lg shadow-yellow-400/30 relative overflow-hidden cursor-pointer hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300"
-        style={{
-          backgroundImage: 'url("/Assets/outie.png")',
-          backgroundSize: '80%',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: '#0a0f2b'
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-yellow-900/20 to-transparent rounded-lg"></div>
-        <div className="absolute bottom-4 left-0 right-0 text-center">
-          <span className="text-2xl text-yellow-100 font-bold drop-shadow-lg text-shadow-glow">
-            Outie Result
+      <div className="grid grid-cols-1 gap-4 max-w-md w-full">
+        <div 
+          className="flex flex-col items-center justify-center p-4 rounded-lg border-2 border-yellow-400 shadow-lg shadow-yellow-400/20 hover:border-yellow-300 hover:shadow-lg hover:shadow-yellow-400/40 transition-all duration-300 min-h-[300px] cursor-pointer relative overflow-hidden"
+          style={{
+            backgroundImage: 'url("/Assets/outie.png")',
+            backgroundSize: '80%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
+          <span className="relative z-10 text-white font-bold drop-shadow-lg text-3xl">
+            OUTIE RESULT
           </span>
         </div>
       </div>
