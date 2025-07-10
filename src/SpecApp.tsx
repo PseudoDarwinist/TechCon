@@ -1508,10 +1508,19 @@ const InnieWorkspace = ({ setOutieWorkflow, addLumonMessage, triggerPerk, trigge
                 backgroundImage: `url("/Assets/${c.backgroundImage}")`,
                 backgroundSize: '80%',
                 backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
+                backgroundRepeat: 'no-repeat',
+                ...(c.id === 'PRODUCT OWNER' ? {
+                  filter: 'contrast(1.1) saturate(0.9) brightness(0.95)',
+                } : {})
               } : {}}>
               {c.hasBackground && (
                 <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg"></div>
+              )}
+              {c.id === 'PRODUCT OWNER' && (
+                <div className="absolute inset-0 rounded-lg opacity-10" style={{
+                  backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+                  backgroundSize: '4px 4px'
+                }}></div>
               )}
               <span className={`text-2xl ${c.hasBackground ? 'relative z-10 text-white font-bold drop-shadow-lg' : ''}`}>{c.id}</span>
             </div>
