@@ -1,5 +1,5 @@
 {
-  "name": "coforge-techcon",
+  "name": "techcon",
   "compatibility_date": "2025-01-09",
   "assets": {
     "directory": "./dist"
