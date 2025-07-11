@@ -1039,7 +1039,7 @@ const domainAppsData = {
     { name: 'Factory', url: 'https://www.factory.ai/', logo: '/Assets/Factory.png', isBackground: true },
     { name: 'PromptBuilder', url: 'https://promptbuilder.pages.dev/', logo: '/Assets/Prompt_Builder.png', isBackground: true },
     { name: 'Software factory architecture', url: '/Assets/Software_Factory.png', logo: '/Assets/Software_Factory.png', isBackground: true },
-    { name: 'Travel Disruption Architecture', url: './Product_Owner/travel-disruption-architecture.html', logo: '/Assets/disruption.png', isBackground: true },
+    { name: 'Software factory Roadmap', url: './Product_Owner/software_factory_roadmap.html', logo: '/Assets/disruption.png', isBackground: true },
   ],
   'DESIGNER': [
   ],
